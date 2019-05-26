@@ -1,9 +1,13 @@
-//////const repsData = require('../data/reps.json');
-///const senateData = require('../data/senate.json');
+const repsData = require('../data/reps.json');
+const senateData = require('../data/senate.json');
 
 export const senatePartyLayer  = {
     "id": "senate-layer",
-    "source":"senate",
+    "source": {
+        "type":"geojson",
+        "data":senateData,
+        "generateId": true
+    },
     "type": "fill",
     "layout": {
         
@@ -24,7 +28,11 @@ export const senatePartyLayer  = {
 
 export const repsPartyLayer  = {
     "id": "reps-layer",
-    "source":"reps",
+    "source":{
+        "type":"geojson",
+        "data":repsData,
+        "generateId": true
+    },
     "type": "fill",
     "layout": {
         

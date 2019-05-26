@@ -17,18 +17,6 @@ const mapOptions = {
 mapboxgl.accessToken =  accesstoken;
 const map = new mapboxgl.Map(mapOptions);
 
-map.on('load', () => {
-    map.addSource('senate',{
-        "type":"geojson",
-        "data":senateData,
-        "generateId": true
-    })
-    map.addSource('reps',{
-        "type":"geojson",
-        "data":repsData,
-        "generateId": true
-    })
-})
 
 
 

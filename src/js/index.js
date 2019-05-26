@@ -26,7 +26,10 @@ const checkLayerExist = (layerId) => {
 
 const addLayerToMap = (layer, layerId) => {
     if(!checkLayerExist(layerId)) {
-       state.map.addLayer(layer)
+       
+        state.map.addLayer(layer);
+     
+      
     }
     else {
         state.map.setLayoutProperty(layerId,'visibility', 'visible');
@@ -42,18 +45,12 @@ elements.senateBtn.addEventListener('click', e => {
        state.map.setLayoutProperty('reps-layer','visibility', 'none');
       
     }
-    // add senate layer to map
 
     addLayerToMap(senatePartyLayer,'senate-layer');
 
-    
 
-    //toggle active btn class
     addActiveClass(e.target);
-    //close all other filters and open party;
-   
-    //2. remove active class from all btn and add to this btn
-    //3. close all filter for the other categories and open for party
+
 })
 
 
@@ -71,10 +68,15 @@ elements.repsBtn.addEventListener('click', e => {
 
     //toggle active btn class
     addActiveClass(e.target);
-    //close all other filters and open party;
-   
-    //2. remove active class from all btn and add to this btn
-    //3. close all filter for the other categories and open for party
+})
+
+window.document.addEventListener('DOMContentLoaded', e => {
+    console.log('load');
+    map.on('load', e => {
+        elements.senateBtn.click();
+    })
+    
+    
 })
 
 
