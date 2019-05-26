@@ -5,17 +5,18 @@
     <meta charset='utf-8' />
     <title>Display a map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:100,400&display=swap" rel="stylesheet">
 
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
-    <link href="./css/styles.css" rel="stylesheet">
+    <!-- <link href="./css/styles.css" rel="stylesheet" type="text/css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <style>
         html,
         body {
-            font-family: 'Roboto Slab', serif;
+           
+            font-family: 'Alegreya Sans', sans-serif;
             margin: 0;
             padding: 0;
             width: 100%;
@@ -25,10 +26,58 @@
 
         #map {
             width: 100%;
-            height: 90%;
+            height: 100%;
+        }   
+        .page__container {
+            width:100%;
+            height: 100%; 
+        }
+        .page__nav {
+            width: 100%;
+            background-color: #659dbd;
+            position: absolute;
+            top: 1vh;
+            height: 58px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .mapTypeBtn__container {}
+        .select__btns {
+            background-color: #fff;
+            color: #659dbd;
+        }
+
+        .mapTypeBtn__container {
+            display: flex;
+            justify-content: space-evenly;
+            width: 36vw;
+            align-items: center;
+        }
+
+        .legend__container {
+            position: absolute;
+            z-index: 2;
+            top: 35vh;
+            left: 66vw;
+        }
+        .filter__subcategory {
+            margin-left: 0;
+            padding-left: 19px;
+        }
+
+        .filter__subcategory li{
+            display: flex;
+            list-style: none;
+            align-items: center;
+
+        }
+        .filter__subcategory li span:first-child {
+            height: 8px;
+            width: 8px;
+            display: block;
+        }
     </style>
 
 </head>
@@ -36,14 +85,49 @@
 
 <body>
 
-    <div class="container-fluid" style="height: 100%; ">
-        <nav style="background-color:#CAD996" class="navbar navbar-light" style="height: 10%;">
+    <div class="page__container">
+        <nav  class="page__nav">
             <div class="mapTypeBtn__container">
-                <button>Senate</button>
-                <button>House of Representatives</button>
+                <button class="btn btn-sm btn-light select__btns senate__btn">Senate</button>
+                <button class="btn btn-sm btn-light select__btns reps__btn">Representatives</button>
             </div>
         </nav>
         <div id='map'></div>
+
+
+        <div class="legend__container card" style="font-size:0.8em;">
+            <h6 class="card-header" style="padding:4px 4px;">Filter Map</h6>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="padding:4px">
+                    <input type="radio" name="filter-type"> Age
+                </li>
+                <li class="list-group-item" style="padding:4px">
+                    <input type="radio" name="filter-type"> Gender
+                </li>
+                <li class="list-group-item" style="padding:4px">
+                    <input type="radio" style="padding:4px" name="filter-type"> Educational Level
+                    <ul class="filter__subcategory">
+                        <li>
+                            <span style="background-color:blue"></span><span style="display:block;">Tertiary-Bachelor</span>
+                        </li>
+                        <li >
+                            <span style="background-color:red"></span><span style="display:block;">Tertiary-Diploma</span>
+                        </li >
+                        <li >
+                            <span style="background-color: brown"></span><span style="display:block;">Tertiary-OND</span>
+                        </li>
+                        <li >
+                            <span style="background-color:lightpink"></span><span style="display:block;">Secondary</span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="list-group-item" style="padding:4px">
+                        <input type="radio" name="filter-type"> Party
+                </li>
+
+            </ul>
+
+        </div>
     </div>
 
 
