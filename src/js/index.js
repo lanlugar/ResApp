@@ -7,6 +7,7 @@ import $ from 'jquery';
 import map from './map.config';
 import elements from './base';
 import {senatePartyLayer, repsPartyLayer} from './map.layers';
+import {addActiveClass, showFilter} from './view'
 
 const state = {}
 
@@ -23,34 +24,55 @@ const checkLayerExist = (layerId) => {
     return false;
 }
 
-const addLayerToMap = (layerId) => {
+const addLayerToMap = (layer, layerId) => {
     if(!checkLayerExist(layerId)) {
-        map.addLayer(senatePartyLayer)
-    }else {
-        state.map.getLayer(layerId).setLayoutProperty('visibility', 'visible')
+       state.map.addLayer(layer)
+    }
+    else {
+        state.map.setLayoutProperty(layerId,'visibility', 'visible');
+        console.log(state.map.getLayer(layerId))
     }
 }
 
+
 elements.senateBtn.addEventListener('click', e => {
+    showFilter(elements.partyFilter)
     //check if reps layer is added, if added set visibility to none
     if(checkLayerExist('reps-layer')) {
-       map.getLayer('reps-layer'.setLayoutProperty('visibility', 'none'));
+       state.map.setLayoutProperty('reps-layer','visibility', 'none');
+      
     }
     // add senate layer to map
-    addLayerToMap('senate-layer');
-   
-   
 
+    addLayerToMap(senatePartyLayer,'senate-layer');
+
+    
+
+    //toggle active btn class
+    addActiveClass(e.target);
+    //close all other filters and open party;
+   
     //2. remove active class from all btn and add to this btn
     //3. close all filter for the other categories and open for party
 })
 
 
 elements.repsBtn.addEventListener('click', e => {
-    //1.add senate layer 
-    map.addLayer(repsPartyLayer);
-    console.log(state.map);
+    showFilter(elements.partyFilter)
+    //check if reps layer is added, if added set visibility to none
+    if(checkLayerExist('senate-layer')) {
+       state.map.setLayoutProperty('senate-layer','visibility', 'none');
+    }
+    // add senate layer to map
 
+    addLayerToMap(repsPartyLayer, 'reps-layer');
+
+    
+
+    //toggle active btn class
+    addActiveClass(e.target);
+    //close all other filters and open party;
+   
     //2. remove active class from all btn and add to this btn
     //3. close all filter for the other categories and open for party
 })

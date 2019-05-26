@@ -12,9 +12,9 @@ export const senatePartyLayer  = {
         "fill-color": ["match",
     ["get", "PARTY"],
 
-        "APC","RED",
-        "PDP", "BLUE",
-        "BLACK"
+        "APC","#66fcf1",
+        "PDP", "#c5c6c7",
+        "#1f2833"
 ],
         "fill-opacity":1,
         "fill-outline-color": "#ccc"
@@ -33,9 +33,9 @@ export const repsPartyLayer  = {
         "fill-color": ["match",
     ["get", "PARTY"],
 
-        "APC","RED",
-        "PDP", "BLUE",
-        "BLACK"
+        "APC","#66fcf1",
+        "PDP", "#c5c6c7",
+        "#1f2833"
 ],
         "fill-opacity":1,
         "fill-outline-color": "#ccc"
