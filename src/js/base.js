@@ -7,5 +7,6 @@ export default {
     ageFilter: document.querySelector('.age__block'),
     genderFilter: document.querySelector('.gender__block'),
     educationFilter: document.querySelector('.education__block'),
-    partyFilter: document.querySelector('.party__block')
+    partyFilter: document.querySelector('.party__block'),
+    filterInputs: document.getElementsByName('filter-type')
 }

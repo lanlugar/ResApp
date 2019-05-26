@@ -6,7 +6,7 @@ const senateData = require('../data/senate.json');
 import $ from 'jquery';
 import map from './map.config';
 import elements from './base';
-import {senatePartyLayer, repsPartyLayer} from './map.layers';
+import {senatePartyLayer, repsPartyLayer,senateAgeFilter, senateEducationFilter, senateGenderFilter, senatePartyFilter,repsAgeFilter, repsEducationFilter, repsGenderFilter, repsPartyFilter} from './map.layers';
 import {addActiveClass, showFilter} from './view'
 
 const state = {}
@@ -15,8 +15,8 @@ state.map = map;
 
 
 
-console.log(senateData)
-console.log(repsData)
+const arr = repsData.features.map(e => {return e.properties})
+console.log(new Set(arr))
 
 const checkLayerExist = (layerId) => {
     const i = state.map.style._layers.hasOwnProperty(layerId)
@@ -33,13 +33,14 @@ const addLayerToMap = (layer, layerId) => {
     }
     else {
         state.map.setLayoutProperty(layerId,'visibility', 'visible');
-        console.log(state.map.getLayer(layerId))
+       
     }
 }
 
 
 elements.senateBtn.addEventListener('click', e => {
-    showFilter(elements.partyFilter)
+    showFilter(elements.partyFilter);
+    state.buttonClicked = 'senate'
     //check if reps layer is added, if added set visibility to none
     if(checkLayerExist('reps-layer')) {
        state.map.setLayoutProperty('reps-layer','visibility', 'none');
@@ -47,15 +48,14 @@ elements.senateBtn.addEventListener('click', e => {
     }
 
     addLayerToMap(senatePartyLayer,'senate-layer');
-
-
     addActiveClass(e.target);
 
 })
 
 
 elements.repsBtn.addEventListener('click', e => {
-    showFilter(elements.partyFilter)
+    showFilter(elements.partyFilter);
+    state.buttonClicked = 'reps'
     //check if reps layer is added, if added set visibility to none
     if(checkLayerExist('senate-layer')) {
        state.map.setLayoutProperty('senate-layer','visibility', 'none');
@@ -77,6 +77,47 @@ window.document.addEventListener('DOMContentLoaded', e => {
     })
     
     
+})
+
+Array.from(elements.filterInputs).forEach(input => {
+    input.addEventListener('change', e => {
+        if(state.buttonClicked === 'senate') {
+            console.log(e.target.value)
+            //show filter category
+            const filterCategoryChosen = e.target.value;
+            showFilter(elements[filterCategoryChosen]);
+            if(filterCategoryChosen === 'partyFilter' ){
+                state.map.setPaintProperty('senate-layer', 'fill-color', senatePartyFilter);
+            } else if(filterCategoryChosen === 'educationFilter') {
+                state.map.setPaintProperty('senate-layer', 'fill-color', senateEducationFilter);
+            } else if(filterCategoryChosen === 'genderFilter') {
+                state.map.setPaintProperty('senate-layer', 'fill-color', senateGenderFilter);
+            }else if (filterCategoryChosen === 'ageFilter') {
+                state.map.setPaintProperty('senate-layer', 'fill-color', senateAgeFilter)
+            }
+            
+            //get layer
+            //filter layer
+        }else if (state.buttonClicked === 'reps') {
+            console.log(e.target.value)
+            //show filter category
+            const filterCategoryChosen = e.target.value;
+            showFilter(elements[filterCategoryChosen]);
+            if(filterCategoryChosen === 'partyFilter' ){
+                state.map.setPaintProperty('reps-layer', 'fill-color', repsPartyFilter);
+            } else if(filterCategoryChosen === 'educationFilter') {
+                state.map.setPaintProperty('reps-layer', 'fill-color', repsEducationFilter);
+            } else if(filterCategoryChosen === 'genderFilter') {
+                state.map.setPaintProperty('reps-layer', 'fill-color', repsGenderFilter);
+            }else if (filterCategoryChosen === 'ageFilter') {
+                state.map.setPaintProperty('reps-layer', 'fill-color', repsAgeFilter)
+            }
+            
+            //get layer
+            //filter layer
+        }
+        
+    })
 })
 
 

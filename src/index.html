@@ -62,8 +62,8 @@
         .legend__container {
             position: absolute;
             z-index: 2;
-            top: 35vh;
-            left: 66vw;
+            top: 27vh;
+            left: 85vw
         }
         .filter__subcategory {
             margin-left: 0;
@@ -103,7 +103,7 @@
             <h6 class="card-header" style="padding:4px 4px;">Filter Map</h6>
             <ul class="list-group list-group-flush filter__categories">
                 <li class="list-group-item" style="padding:4px">
-                    <label><input type="radio" name="filter-type"> Age </label>
+                    <label><input type="radio" name="filter-type" value="ageFilter"> Age </label>
                     <ul class="filter__subcategory  age__block">
                             <li>
                                 <span style="background-color:#45a29e"></span><span style="display:block;"> Less than 30yrs</span>
@@ -117,10 +117,11 @@
                             <li >
                                 <span style="background-color:#1f2833"></span><span style="display:block;"> 60yrs or more</span>
                             </li>
+                            
                         </ul>
                 </li>
                 <li class="list-group-item" style="padding:4px">
-                    <label><input type="radio" name="filter-type"> Gender</label>
+                    <label><input type="radio" name="filter-type" value="genderFilter"> Gender</label>
                     <ul class="filter__subcategory gender__block">
                             <li >
                                 <span style="background-color: #c5c6c7"></span><span style="display:block;">Male</span>
@@ -128,27 +129,45 @@
                             <li >
                                 <span style="background-color:#1f2833"></span><span style="display:block;">Female</span>
                             </li>
+
+                            <li >
+                                <span style="background-color:#5d001e"></span><span style="display:block;">Unspecified</span>
+                            </li>
                         </ul>
                 </li>
                 <li class="list-group-item" style="padding:4px">
-                    <label><input type="radio" style="padding:4px" name="filter-type"> Educational Level</label>
+                    <label><input type="radio" style="padding:4px" name="filter-type" value="educationFilter"> Educational Level</label>
                     <ul class="filter__subcategory education__block">
                         <li>
-                            <span style="background-color:#45a29e"></span><span style="display:block;">Tertiary-Bachelor</span>
+                            <span style="background-color:#c5c6c7"></span><span style="display:block;">Tertiary-Bachelor</span>
                         </li>
                         <li >
-                            <span style="background-color:#66fcf1"></span><span style="display:block;">Tertiary-Diploma</span>
+                            <span style="background-color:#1f2833"></span><span style="display:block;">Tertiary-OND/HND</span>
                         </li >
                         <li >
-                            <span style="background-color: #c5c6c7"></span><span style="display:block;">Tertiary-OND</span>
+                            <span style="background-color: #5d001e"></span><span style="display:block;">Tertiary-Diploma/NCE</span>
                         </li>
                         <li >
-                            <span style="background-color:#1f2833"></span><span style="display:block;">Secondary</span>
+                            <span style="background-color:#45a29e"></span><span style="display:block;">Tertiary-Masters</span>
                         </li>
+                        <li >
+                            <span style="background-color:#66fcf1"></span><span style="display:block;">Tertiary-Ph.D</span>
+                        </li>
+                        <li >
+                            <span style="background-color:#d79922"></span><span style="display:block;">Secondary</span>
+    
+                        </li>
+                        <li >
+                            <span style="background-color:#4056a1"></span><span style="display:block;">Primary</span>
+                        </li>      
+                        <li >
+                            <span style="background-color:#ee4c7c"></span><span style="display:block;">Unknown</span>
+                        </li>
+                  
                     </ul>
                 </li>
                 <li class="list-group-item" style="padding:4px">
-                        <label><input type="radio" name="filter-type" value="party" checked> Party</label>
+                        <label><input type="radio" name="filter-type" value="partyFilter" checked> Party</label>
                         <ul class="filter__subcategory party__block">
                                 <li >
                                     <span style="background-color:#66fcf1"></span><span style="display:block;">APC</span>

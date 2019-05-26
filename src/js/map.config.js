@@ -1,5 +1,4 @@
-const repsData = require('../data/reps.json');
-const senateData = require('../data/senate.json');
+
 const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
 import {accesstoken} from '../../configurations';
 import elements from './base';
